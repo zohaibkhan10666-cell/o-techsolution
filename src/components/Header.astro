@@ -1,0 +1,210 @@
+---
+import DarkModeToggle from './DarkModeToggle.astro';
+
+const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Projects', href: '/case-studies' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const services = [
+  { label: 'Web Development', href: '/services/web-development', badge: 'GEN-AI' },
+  { label: 'Oracle PL/SQL Finance', href: '/services/oracle-finance', badge: 'ERP' },
+  { label: 'Weaving Software', href: '/services/weaving', badge: 'Textile' },
+  { label: 'Finance & Accounts', href: '/services/finance-accounts', badge: 'Finance' },
+  { label: 'Travel Agency Software', href: '/services/travel-agency-erp', badge: 'Travel' },
+  { label: 'School & Hospital Mgmt', href: '/services/school-hospital-management', badge: 'Mgmt' },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(href + '/');
+---
+
+<header class="sticky top-0 z-50 bg-[var(--canvas)]/90 backdrop-blur-md border-b border-[var(--hairline)]">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <div class="h-16 flex items-center justify-between gap-4">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 shrink-0">
+        <div class="w-9 h-9 rounded-lg border border-[var(--hairline)] flex items-center justify-center shadow-lvl1 bg-[var(--canvas)]">
+          <span class="text-[var(--ink)] text-[15px] font-bold tracking-tight">O</span>
+        </div>
+        <div class="leading-tight">
+          <div class="text-[var(--ink)] text-[14px] font-semibold">O-Tech Solutions</div>
+          <div class="hidden sm:block text-[11px] text-[var(--mute)]" style="font-family: var(--font-mono);">Hand-Delivered Software</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+
+        <!-- Services dropdown -->
+        <div class="relative group">
+          <button
+            class={`inline-flex items-center gap-1 px-3 py-2 rounded-full text-[14px] transition ${currentPath.startsWith('/services') ? 'text-[var(--ink)] bg-[var(--canvas-soft-2)]' : 'text-[var(--body)] hover:text-[var(--ink)] hover:bg-[var(--canvas-soft-2)]'}`}
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Services
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition group-hover:rotate-180">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+
+          <!-- Dropdown panel -->
+          <div
+            class="absolute left-0 top-[calc(100%+8px)] w-[340px] rounded-xl bg-[var(--canvas)] border border-[var(--hairline)] shadow-lvl4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition duration-150"
+            style="transform-origin: top left;"
+          >
+            <div class="p-3">
+              <div class="px-2 py-1.5 text-[11px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                All services
+              </div>
+              <div class="mt-1 grid grid-cols-1 gap-0.5">
+                {services.map((s) => (
+                  <a
+                    href={s.href}
+                    class={`flex items-center justify-between px-3 py-2.5 rounded-lg transition text-[14px] ${isActive(s.href) ? 'bg-[var(--canvas-soft-2)] text-[var(--ink)]' : 'text-[var(--body)] hover:bg-[var(--canvas-soft)] hover:text-[var(--ink)]'}`}
+                  >
+                    {s.label}
+                    <span class="text-[10px] rounded-full border border-[var(--hairline)] px-2 py-0.5" style="font-family: var(--font-mono); color: var(--mute);">
+                      {s.badge}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other nav links -->
+        {navLinks.map((l) => (
+          <a
+            href={l.href}
+            class={`px-3 py-2 rounded-full text-[14px] transition ${isActive(l.href) ? 'text-[var(--ink)] bg-[var(--canvas-soft-2)] font-medium' : 'text-[var(--body)] hover:text-[var(--ink)] hover:bg-[var(--canvas-soft-2)]'}`}
+          >
+            {l.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right actions -->
+      <div class="flex items-center gap-2 shrink-0">
+        <DarkModeToggle />
+
+        <a
+          href="/contact"
+          class="hidden sm:inline-flex items-center justify-center h-9 px-4 rounded-full bg-[var(--primary)] text-[var(--on-primary)] text-[13px] font-semibold hover:opacity-90 transition"
+        >
+          Project Inquiry
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-[var(--hairline)] hover:bg-[var(--canvas-soft)] transition"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          id="mobile-menu-btn"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile drawer backdrop -->
+  <div
+    id="mobile-backdrop"
+    class="md:hidden fixed inset-0 z-[60] pointer-events-none opacity-0 transition-opacity duration-200"
+    aria-hidden="true"
+  >
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="mobile-close-bg"></div>
+
+    <!-- Drawer panel -->
+    <div
+      id="mobile-panel"
+      class="absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-[var(--canvas)] border-l border-[var(--hairline)] shadow-lvl4 flex flex-col overflow-y-auto"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--hairline)]">
+        <div class="text-[14px] font-semibold text-[var(--ink)]">O-Tech Solutions</div>
+        <button
+          id="mobile-close-btn"
+          class="w-9 h-9 rounded-lg border border-[var(--hairline)] flex items-center justify-center hover:bg-[var(--canvas-soft)] transition"
+          aria-label="Close navigation menu"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Nav links -->
+      <div class="flex flex-col p-4 gap-1">
+        <a href="/" class="px-3 py-2.5 rounded-lg text-[14px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition">Home</a>
+        <a href="/about" class="px-3 py-2.5 rounded-lg text-[14px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition">About</a>
+        <a href="/#services" class="px-3 py-2.5 rounded-lg text-[14px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition">Services</a>
+        <a href="/case-studies" class="px-3 py-2.5 rounded-lg text-[14px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition">Case Studies</a>
+        <a href="/demo" class="px-3 py-2.5 rounded-lg text-[14px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition">Demo Sandbox</a>
+        <a href="/contact" class="px-3 py-2.5 rounded-lg text-[14px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition">Contact</a>
+      </div>
+
+      <!-- Services submenu -->
+      <div class="px-4 pb-4">
+        <div class="text-[11px] text-[var(--mute)] uppercase tracking-wide px-3 mb-2" style="font-family: var(--font-mono);">Services</div>
+        <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] overflow-hidden">
+          {services.map((s) => (
+            <a href={s.href} class="flex items-center justify-between px-3 py-2.5 text-[13px] text-[var(--body)] hover:bg-[var(--canvas-soft-2)] hover:text-[var(--ink)] transition border-b border-[var(--hairline)] last:border-0">
+              {s.label}
+              <span class="text-[10px]" style="font-family: var(--font-mono); color: var(--mute);">{s.badge}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-auto p-4 border-t border-[var(--hairline)]">
+        <a
+          href="/contact"
+          class="inline-flex w-full justify-center items-center h-11 px-5 rounded-full bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-90 transition"
+        >
+          Project Inquiry →
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const btn = document.getElementById('mobile-menu-btn');
+  const backdrop = document.getElementById('mobile-backdrop');
+  const closeBg = document.getElementById('mobile-close-bg');
+  const closeBtn = document.getElementById('mobile-close-btn');
+
+  function openMenu() {
+    if (!backdrop || !btn) return;
+    backdrop.classList.remove('pointer-events-none', 'opacity-0');
+    backdrop.classList.add('pointer-events-auto', 'opacity-100');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    if (!backdrop || !btn) return;
+    backdrop.classList.remove('pointer-events-auto', 'opacity-100');
+    backdrop.classList.add('pointer-events-none', 'opacity-0');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  closeBg?.addEventListener('click', closeMenu);
+
+  // Close on route change (View Transitions)
+  document.addEventListener('astro:before-swap', closeMenu);
+</script>

@@ -1,0 +1,47 @@
+---
+interface Props {
+  class?: string;
+  delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right' | 'fade';
+}
+
+const { class: className = '', delay = 0, direction = 'up' } = Astro.props;
+
+const directionStyles = {
+  up: 'translate-y-8',
+  down: '-translate-y-8',
+  left: 'translate-x-8',
+  right: '-translate-x-8',
+  fade: '',
+};
+---
+
+<div
+  class={`scroll-reveal opacity-0 ${directionStyles[direction]} ${className}`}
+  data-delay={delay}
+  style="transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);"
+>
+  <slot />
+</div>
+
+<script is:inline>
+  if (!window.__scrollRevealInit) {
+    window.__scrollRevealInit = true;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || '0', 10);
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translate(0, 0)';
+            }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+  }
+</script>

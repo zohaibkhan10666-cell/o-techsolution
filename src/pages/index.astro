@@ -1,0 +1,524 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StatsSection from '../components/StatsSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const roles = [
+  { label: 'CFO / Finance Owner', href: '/services/oracle-finance', sub: 'Trial balance, cash/bank, journals, level-3 reports.' },
+  { label: 'Factory / Weaving Owner', href: '/services/weaving', sub: 'Grey fabric management, cutting, trading & parts.' },
+  { label: 'Hospital Admin', href: '/services/school-hospital-management', sub: 'Operational workflows, user rights & reports.' },
+  { label: 'School Principal / Admin', href: '/services/school-hospital-management', sub: 'Management modules, users, and daily operations.' },
+  { label: 'Developer / Startup', href: '/services/web-development', sub: 'Hand-delivered web apps with GEN-AI features.' },
+  { label: 'Travel Agency Owner', href: '/services/travel-agency-erp', sub: 'Booking, invoice & roles for agency operations.' },
+];
+
+const services = [
+  { title: 'Web Development', desc: 'MERN, MEAN, Next.js web-applications with E-commerce, food delivery, hospital management, and GEN-AI integration.', href: '/services/web-development', badge: 'GEN-AI', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', gradient: 'from-blue-500/10 to-cyan-500/10' },
+  { title: 'Oracle PL/SQL Database', desc: 'Finance accounts, account statement, trial balance, journals, level-3 head reports, cash/bank payment & receipt.', href: '/services/oracle-finance', badge: 'ERP', icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4', gradient: 'from-emerald-500/10 to-teal-500/10' },
+  { title: 'Weaving Software', desc: 'Grey fabric management, print cutting, trading management, parts management system.', href: '/services/weaving', badge: 'Textile', icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z', gradient: 'from-purple-500/10 to-pink-500/10' },
+  { title: 'Finance & Accounts', desc: 'Yarn stock, sizing bills, sales tax invoice, user rights control, Kachi & Pakki Parchi (inward/outward).', href: '/services/finance-accounts', badge: 'Finance', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', gradient: 'from-amber-500/10 to-orange-500/10' },
+  { title: 'Travel Agency Software', desc: 'Vertical software for travel workflows, bookings, invoices and operational reporting.', href: '/services/travel-agency-erp', badge: 'Travel', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z', gradient: 'from-sky-500/10 to-blue-500/10' },
+  { title: 'School & Hospital System', desc: 'Management systems for daily operations, user roles, reports and workflows.', href: '/services/school-hospital-management', badge: 'Management', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', gradient: 'from-rose-500/10 to-red-500/10' },
+];
+
+const steps = [
+  { step: 'Discovery & Requirements', desc: 'We align on your workflows, reports, and data structure before any code is written.' },
+  { step: 'Design & Data Mapping', desc: 'UI layouts + ledger/data mapping matched to your real operations.' },
+  { step: 'Development (ERP / Web / Modules)', desc: 'We keep it practical: UI + data logic + reports built for daily usage.' },
+  { step: 'GEN-AI Integration', desc: 'We embed helpful automation (assist, summarize, validate) without breaking core ERP/accounting rules.' },
+  { step: 'UAT & Iteration', desc: 'Your team tests with real scenarios, and we fix gaps before final delivery.' },
+  { step: 'Delivery & Support', desc: 'Clean handover with training, documentation, and ongoing support.' },
+];
+
+const caseStudies = [
+  { title: 'Weaving ERP for 200+ looms', tags: ['Weaving', 'Parts', 'Reports'], href: '/case-studies', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop&auto=format' },
+  { title: 'Finance accounts + level-3 reports', tags: ['Oracle', 'PL/SQL', 'Trial Balance'], href: '/case-studies', img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop&auto=format' },
+  { title: 'Kachi/Pakki Parchi with role rights', tags: ['Accounts', 'Inward/Outward', 'Controls'], href: '/case-studies', img: 'https://images.unsplash.com/photo-1450101499163-c8848e66ad76?w=600&h=400&fit=crop&auto=format' },
+];
+---
+
+<Layout
+  title="O-Tech Solutions | Custom Software, Hand-Delivered."
+  description="O-Tech Solutions delivers web development, Oracle PL/SQL ERP/finance software, weaving/textile ERP, accounts management, and GEN-AI-integrated custom apps."
+>
+  <!-- MESH GRADIENT BACKDROP -->
+  <div class="mesh-gradient-bg pointer-events-none" style="position: fixed; inset: -20vh -20vw auto -20vw; height: 70vh; z-index: -1; filter: blur(40px); opacity: 0.9;"></div>
+
+  <!-- ═══════════════════════════════════════════ HERO ═══ -->
+  <section class="relative pt-14 pb-12">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+        <!-- LEFT: Headline + CTAs -->
+        <div class="lg:col-span-7">
+          <ScrollReveal>
+            <div class="inline-flex items-center gap-2 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl2 px-4 py-2">
+              <span class="live-indicator-pulse inline-flex w-2.5 h-2.5 rounded-full bg-[var(--color-accent)]"></span>
+              <span class="text-[12px]" style="font-family: var(--font-mono); color: var(--body);">HAND-DELIVERED SOFTWARE • LIVE DEMOS AVAILABLE</span>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <h1 class="display-xl mt-6">
+              Custom Software, <span class="gradient-text">Hand-Delivered.</span> From ERP to GEN-AI.
+            </h1>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <p class="mt-4 text-[18px] leading-[28px] text-[var(--body)] max-w-[52ch]">
+              O-Tech Solutions builds and delivers production-ready systems:
+              web apps, Oracle PL/SQL finance/ERP, weaving/textile management, accounts controls,
+              and vertical solutions for travel, school, and hospital operations.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={300}>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href="/demo"
+                class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-90 transition"
+              >
+                See your software demo
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--canvas)] text-[var(--ink)] border border-[var(--hairline)] text-[14px] font-semibold hover:bg-[var(--canvas-soft-2)] transition"
+              >
+                Get a quote
+              </a>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={400}>
+            <div class="mt-8 flex flex-wrap gap-2">
+              {['MERN • MEAN • Next.js', 'Oracle PL/SQL ERP', 'Weaving / Textile ERP', 'GEN-AI Integration'].map((b) => (
+                <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-3 py-2 text-[12px]" style="font-family: var(--font-mono);">
+                  {b}
+                </span>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+
+        <!-- RIGHT: Role selector -->
+        <div class="lg:col-span-5">
+          <ScrollReveal delay={200} direction="left">
+            <div class="shadow-lvl4 rounded-[var(--radius-xl)] bg-[var(--canvas)] border border-[var(--hairline)] p-6">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                I am a…
+              </div>
+              <h2 class="display-md mt-2">Pick your role. We'll show the right software.</h2>
+
+              <div class="mt-5 grid grid-cols-1 gap-2">
+                {roles.map((r, i) => (
+                  <a
+                    href={r.href}
+                    class="group rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-3 hover:bg-[var(--canvas-soft-2)] hover:border-[var(--hairline-strong)] transition-all duration-300"
+                    style={`animation: slide-up 0.4s ease forwards; animation-delay: ${300 + i * 80}ms; opacity: 0;`}
+                  >
+                    <div class="flex items-center justify-between gap-4">
+                      <div>
+                        <div class="text-[14px] font-semibold text-[var(--ink)]">{r.label}</div>
+                        <div class="mt-0.5 text-[12px] leading-[18px] text-[var(--body)]">{r.sub}</div>
+                      </div>
+                      <div class="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] group-hover:border-[var(--hairline-strong)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-300">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M9 7H17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <div class="mt-4 text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">
+                Click your role to explore the matching software module.
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ STATS ═══ -->
+  <StatsSection />
+
+  <!-- ═══════════════════════════════════════════ SERVICES GRID ═══ -->
+  <section id="services" class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="flex items-end justify-between gap-6 flex-wrap">
+          <div>
+            <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">SERVICES</div>
+            <h2 class="display-lg mt-2">Software delivered for real operations.</h2>
+          </div>
+          <a href="/services/web-development" class="text-[14px] font-semibold text-[var(--ink)] hover:underline underline-offset-4 transition">
+            Explore all services →
+          </a>
+        </div>
+      </ScrollReveal>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {services.map((s, i) => (
+          <ScrollReveal delay={i * 80}>
+            <a href={s.href} class="group block rounded-[var(--radius-xl)] bg-[var(--canvas)] border border-[var(--hairline)] shadow-lvl3 overflow-hidden card-lift">
+              <!-- Image area with gradient overlay -->
+              <div class={`relative h-44 bg-gradient-to-br ${s.gradient} overflow-hidden`}>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <svg class="w-20 h-20 text-[var(--ink)] opacity-10 group-hover:opacity-20 transition-opacity duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={s.icon} />
+                  </svg>
+                </div>
+                <!-- Animated corner accent -->
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[var(--color-accent)]/10 to-transparent rounded-bl-[40px] group-hover:w-32 group-hover:h-32 transition-all duration-500"></div>
+                <!-- Badge -->
+                <div class="absolute top-4 left-4">
+                  <span class="rounded-full px-3 py-1 text-[10px] font-semibold border border-[var(--hairline)] bg-[var(--canvas)]/90 backdrop-blur-sm" style="font-family: var(--font-mono); color: var(--mute);">
+                    {s.badge}
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="text-[14px] font-semibold text-[var(--ink)]">{s.title}</div>
+                <div class="mt-3 text-[14px] leading-[20px] text-[var(--body)]">{s.desc}</div>
+                <!-- Animated accent bar on hover -->
+                <div class="mt-5 h-1 rounded-full bg-[var(--canvas-soft-2)] overflow-hidden">
+                  <div class="h-full w-0 group-hover:w-full transition-all duration-500 rounded-full" style="background: linear-gradient(90deg, var(--color-accent), #007cf0);"></div>
+                </div>
+                <div class="mt-4 text-[13px] font-semibold text-[var(--ink)] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Learn more →
+                </div>
+              </div>
+            </a>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ HANDDELIVERED TIMELINE ═══ -->
+  <section class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-5">
+          <ScrollReveal>
+            <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">PROJECT HANDDELIVERED</div>
+            <h2 class="display-lg mt-2">A step-by-step process.</h2>
+            <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)]">
+              We deliver from discovery to UAT and final handover — built for transparency, speed, and real-world quality.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {['GEN-AI aware', 'Report-ready', 'Hand delivered', 'UAT included'].map((t) => (
+                <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-3 py-2 text-[12px]" style="font-family: var(--font-mono);">{t}</span>
+              ))}
+            </div>
+            <div class="mt-8">
+              <a href="/contact" class="inline-flex items-center justify-center h-11 px-6 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-90 transition">
+                Start with a discovery call →
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ScrollReveal direction="left">
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas-soft)] shadow-lvl4 p-6">
+              <ol class="space-y-0">
+                {steps.map((s, i) => (
+                  <li class="flex gap-4 group" data-step={i}>
+                    <!-- Step line connector -->
+                    <div class="flex flex-col items-center">
+                      <div class="w-9 h-9 rounded-full bg-[var(--canvas)] border border-[var(--hairline)] flex items-center justify-center shrink-0 group-hover:border-[var(--color-accent)] group-hover:bg-[var(--color-accent)] transition-all duration-300">
+                        <span class="text-[12px] font-semibold group-hover:text-white transition-colors" style="font-family: var(--font-mono); color: var(--ink);">{String(i+1).padStart(2,'0')}</span>
+                      </div>
+                      {i < steps.length - 1 && (
+                        <div class="w-px flex-1 my-1 bg-[var(--hairline)] group-hover:bg-[var(--color-accent)]/30 transition-colors min-h-[20px]"></div>
+                      )}
+                    </div>
+                    <div class={`pb-5 ${i === steps.length - 1 ? '' : ''}`}>
+                      <div class="text-[14px] font-semibold text-[var(--ink)] mt-1.5">{s.step}</div>
+                      <div class="mt-1 text-[13px] leading-[20px] text-[var(--body)]">{s.desc}</div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ COMPARISON TABLE ═══ -->
+  <section class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
+          <div>
+            <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">TRUST</div>
+            <h2 class="display-lg mt-2">O-Tech vs the alternatives.</h2>
+          </div>
+          <div class="text-[14px] text-[var(--body)] max-w-[44ch]">
+            Built for quality, not just code. Built for daily operations, not demo screens.
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        <div class="overflow-x-auto rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3">
+          <table class="min-w-[880px] w-full">
+            <thead>
+              <tr class="bg-[var(--canvas-soft)]">
+                {['What matters', 'O-Tech Solutions ✓', 'Generic agency', 'Offshore freelancer'].map((h, i) => (
+                  <th class={`text-left px-5 py-4 text-[12px] text-[var(--mute)] ${i===1 ? 'text-[var(--ink)]' : ''}`} style="font-family: var(--font-mono);">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Hand-delivered process', 'Discovery → Delivery with UAT', 'Often unclear handover', 'Limited onsite QA & UAT'],
+                ['ERP/Accounting correctness', 'Finance controls & reports built-in', 'Generic templates', 'Fixes after complaints'],
+                ['GEN-AI integration', 'Rules-aware, human-in-the-loop', 'Add-ons without guardrails', 'No consistency across modules'],
+                ['User rights & workflows', 'Role-based permissions per module', 'Basic auth only', 'Hard to adjust later'],
+                ['Weaving / Textile ERP', 'Specialized modules delivered', 'Generic inventory only', 'Not a core offering'],
+                ['Maintenance & iteration', 'Support for real usage cycles', 'One-time delivery', 'Slow response / unclear SLA'],
+              ].map((row) => (
+                <tr class="border-t border-[var(--hairline)] hover:bg-[var(--canvas-soft)] transition-colors duration-200">
+                  {row.map((cell, idx) => (
+                    <td class="px-5 py-4 text-[14px] text-[var(--body)]">
+                      {idx === 1
+                        ? <span class="text-[var(--ink)] font-semibold">{cell}</span>
+                        : cell
+                      }
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ CASE STUDIES ═══ -->
+  <section class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
+          <div>
+            <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">CASE STUDIES</div>
+            <h2 class="display-lg mt-2">Delivered projects, made for operations.</h2>
+          </div>
+          <a href="/case-studies" class="text-[14px] font-semibold text-[var(--ink)] hover:underline underline-offset-4 transition">
+            View all case studies →
+          </a>
+        </div>
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {caseStudies.map((c, i) => (
+          <ScrollReveal delay={i * 100}>
+            <a href={c.href} class="group block rounded-[var(--radius-xl)] bg-[var(--canvas-soft)] border border-[var(--hairline)] shadow-lvl2 overflow-hidden card-lift">
+              <div class="relative h-48 overflow-hidden">
+                <OptimizedImage
+                  src={c.img}
+                  alt={c.title}
+                  width={600}
+                  height={400}
+                  loading="eager"
+                  class="w-full h-full"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="flex flex-wrap gap-2">
+                    {c.tags.map((t) => (
+                      <span class="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[11px] font-semibold text-[var(--ink)]" style="font-family: var(--font-mono);">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="text-[14px] font-semibold text-[var(--ink)]">{c.title}</div>
+                <div class="mt-5 text-[14px] font-semibold text-[var(--ink)] group-hover:underline underline-offset-4">
+                  Read more →
+                </div>
+              </div>
+            </a>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ TESTIMONIALS ═══ -->
+  <TestimonialsSection />
+
+  <!-- ═══════════════════════════════════════════ LIVE DEMO PREVIEW ═══ -->
+  <section class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 p-8 overflow-hidden relative">
+          <!-- Decorative background -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[var(--color-accent)]/5 to-transparent rounded-bl-full pointer-events-none"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#007cf0]/5 to-transparent rounded-tr-full pointer-events-none"></div>
+          
+          <div class="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div>
+              <div class="inline-flex items-center gap-2">
+                <span class="inline-flex w-2.5 h-2.5 rounded-full bg-[var(--color-accent)] live-indicator-pulse" />
+                <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">LIVE DEMO SANDBOX</div>
+              </div>
+              <h2 class="display-md mt-3">Read-only module preview (mock data).</h2>
+              <p class="mt-3 text-[16px] leading-[24px] text-[var(--body)] max-w-[60ch]">
+                Explore a sample of finance entries like <span class="font-semibold text-[var(--ink)]">Kachi Parchi</span>.
+                Frontend-only sandbox with safe mock data — no backend required.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+              <a
+                href="/demo"
+                class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-90 transition"
+              >
+                Open demo
+              </a>
+              <a
+                href="/contact"
+                class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--canvas-soft)] text-[var(--ink)] border border-[var(--hairline)] text-[14px] font-semibold hover:bg-[var(--canvas-soft-2)] transition"
+              >
+                Request your module
+              </a>
+            </div>
+          </div>
+
+          <div class="relative mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-5">
+              <div class="text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">MODULE PREVIEW</div>
+              <div class="mt-3 rounded-[var(--radius-md)] bg-[var(--primary)] text-[var(--on-primary)] p-4 shadow-lvl2">
+                <div class="text-[12px] opacity-80" style="font-family: var(--font-mono);">KACHI PARCHI • READ-ONLY</div>
+                <div class="mt-2 grid grid-cols-3 gap-2 text-[12px]" style="font-family: var(--font-mono);">
+                  <div class="rounded bg-white/5 px-2 py-1 border border-white/10">DOC# 01</div>
+                  <div class="rounded bg-white/5 px-2 py-1 border border-white/10">AMT 24,500</div>
+                  <div class="rounded bg-white/5 px-2 py-1 border border-white/10">13-Jun-26</div>
+                </div>
+                <div class="mt-3 h-24 rounded bg-white/5 border border-white/10 flex items-center justify-center shimmer">
+                  <span class="text-[12px] opacity-50" style="font-family: var(--font-mono);">LEDGER VIEW (MOCK)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-5">
+              <div class="text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">WHY THIS MATTERS</div>
+              <ul class="mt-3 space-y-3 text-[14px] text-[var(--body)]">
+                {[
+                  'Report-ready finance flows with ledger-like views.',
+                  'Role-based controls pattern — mocked UX for real decision-making.',
+                  'GEN-AI integration entry points — safe mock UI, no data risk.',
+                ].map((item) => (
+                  <li class="flex gap-3">
+                    <span class="mt-1 shrink-0 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 text-[11px] text-[var(--color-accent)]">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ CONTACT CTA ═══ -->
+  <section id="contact" class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5">
+          <ScrollReveal>
+            <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">CONTACT</div>
+            <h2 class="display-lg mt-2">Tell us your module. We'll hand-deliver a plan.</h2>
+            <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)]">
+              Reach out for a quote. We'll align on scope, reports, data mapping, and delivery timeline.
+            </p>
+
+            <div class="mt-6 rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas-soft)] shadow-lvl2 p-5">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">DIRECT CONTACT</div>
+              <div class="mt-3 flex flex-col gap-2">
+                <a href="tel:+923001234567" class="inline-flex items-center justify-between rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3 hover:bg-[var(--canvas-soft-2)] transition-all duration-200 hover:shadow-lvl2">
+                  <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .07h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                    <span class="text-[14px] font-semibold">Phone</span>
+                  </div>
+                  <span class="text-[13px]" style="font-family: var(--font-mono); color: var(--body);">+92 300 000 0000</span>
+                </a>
+                <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3 hover:bg-[var(--canvas-soft-2)] transition-all duration-200 hover:shadow-lvl2">
+                  <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: #25D366;">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    <span class="text-[14px] font-semibold">WhatsApp</span>
+                  </div>
+                  <span class="text-[13px]" style="font-family: var(--font-mono); color: var(--body);">Chat now ↗</span>
+                </a>
+                <a href="/contact" class="inline-flex items-center justify-between rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3 hover:bg-[var(--canvas-soft-2)] transition-all duration-200 hover:shadow-lvl2">
+                  <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <span class="text-[14px] font-semibold">Project inquiry form</span>
+                  </div>
+                  <span class="text-[13px]" style="font-family: var(--font-mono); color: var(--body);">Form →</span>
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ScrollReveal delay={100} direction="left">
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas-soft)] shadow-lvl4 p-6">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">QUICK REQUEST</div>
+              <h3 class="display-md mt-2">Project inquiry (fast).</h3>
+              <p class="mt-3 text-[14px] leading-[20px] text-[var(--body)]">
+                Use the contact page form to choose a service and share your requirements.
+              </p>
+
+              <div class="mt-6">
+                <a
+                  href="/contact"
+                  class="inline-flex items-center justify-center w-full h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-90 transition"
+                >
+                  Go to contact form →
+                </a>
+              </div>
+
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  { k: 'Modules', v: 'Finance • ERP • Textile' },
+                  { k: 'Delivery', v: 'Hand-delivered + UAT' },
+                  { k: 'Quality', v: 'Reports-ready & rules-aware' },
+                ].map((item) => (
+                  <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas)] p-4 hover:shadow-lvl2 transition-shadow duration-300">
+                    <div class="text-[12px]" style="font-family: var(--font-mono); color: var(--mute);">{item.k}</div>
+                    <div class="mt-2 text-[14px] font-semibold text-[var(--ink)]">{item.v}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

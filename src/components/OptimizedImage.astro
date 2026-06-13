@@ -1,0 +1,34 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  src,
+  alt,
+  class: className = '',
+  width = 800,
+  height = 450,
+  loading = 'lazy',
+} = Astro.props;
+---
+
+<div class={`image-reveal overflow-hidden rounded-[var(--radius-lg)] ${className}`}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding="async"
+    referrerpolicy="no-referrer"
+    crossorigin="anonymous"
+    class="w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+    onerror={`this.onerror=null; this.src='/images/placeholder.svg';`}
+  />
+</div>

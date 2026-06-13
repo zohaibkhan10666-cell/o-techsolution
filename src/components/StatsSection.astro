@@ -1,0 +1,20 @@
+---
+import AnimatedCounter from './AnimatedCounter.astro';
+
+const stats = [
+  { value: '50+', label: 'Projects Delivered', desc: 'Finance, ERP & Web' },
+  { value: '8+', label: 'Years Experience', desc: 'In custom software' },
+  { value: '5', label: 'Industries Served', desc: 'Finance, Textile, Travel & more' },
+  { value: '100%', label: 'Hand-Delivered', desc: 'With UAT & support' },
+];
+---
+
+<section class="py-16 border-y border-[var(--hairline)] bg-[var(--canvas)]">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((s, i) => (
+        <AnimatedCounter value={s.value} label={s.label} desc={s.desc} delay={i * 100} />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const caseStudies = [
+  {
+    title: 'Weaving ERP for 200+ looms',
+    href: '#',
+    tags: ['Weaving', 'Parts', 'Reports'],
+    problem: 'Factories needed real-time stock + cutting/trading visibility across multiple stages.',
+    solution: 'We built a weaving workflow ERP with role rights, parts management, and report-ready dashboards.',
+    results: 'Faster planning, fewer mismatches, and daily reports that match production reality.',
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop&auto=format',
+    gradient: 'from-purple-500/20 to-pink-500/20',
+  },
+  {
+    title: 'Finance accounts + level-3 reports',
+    href: '#',
+    tags: ['Oracle', 'PL/SQL', 'Trial Balance'],
+    problem: 'Manual finance reconciliation created delays and inconsistent reporting formats.',
+    solution: 'We delivered Oracle PL/SQL modules for accounts, statements, trail balance, and level-3 head reports.',
+    results: 'Cleaner reconciliation cycles and consistent report outputs for management review.',
+    img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop&auto=format',
+    gradient: 'from-emerald-500/20 to-teal-500/20',
+  },
+  {
+    title: 'Kachi/Pakki Parchi with role controls',
+    href: '#',
+    tags: ['Accounts', 'Inward/Outward', 'Controls'],
+    problem: 'Inbound/outbound notes needed strict workflow + authorization with audit-ready output.',
+    solution: 'We implemented Kachi & Pakki parchi flows with user-based right control and ledger mapping.',
+    results: 'Reduced errors, stronger controls, and faster audits with traceable data flows.',
+    img: 'https://images.unsplash.com/photo-1450101499163-c8848e66ad76?w=600&h=400&fit=crop&auto=format',
+    gradient: 'from-amber-500/20 to-orange-500/20',
+  },
+];
+
+const process = [
+  { step: '01', title: 'Discovery', desc: 'Understanding your workflows and requirements' },
+  { step: '02', title: 'Design', desc: 'UI layouts and data mapping' },
+  { step: '03', title: 'Development', desc: 'Building with production-quality code' },
+  { step: '04', title: 'UAT & Delivery', desc: 'Testing with real scenarios and handover' },
+];
+---
+
+<Layout title="O-Tech Solutions | Case Studies" description="Delivered projects and software outcomes for real operations.">
+  <!-- HERO -->
+  <section class="py-14">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <!-- Image -->
+          <div class="relative h-64 lg:h-auto overflow-hidden">
+            <OptimizedImage
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format"
+              alt="Case studies"
+              loading="eager"
+              width={800}
+              height={600}
+              class="w-full h-full"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--canvas)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[var(--canvas)]"></div>
+          </div>
+          <!-- Content -->
+          <div class="p-8 lg:p-12 flex items-center">
+            <div class="max-w-[500px]">
+              <ScrollReveal>
+                <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                  CASE STUDIES
+                </div>
+                <h1 class="display-lg mt-2">Delivered projects, made for operations</h1>
+                <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)]">
+                  Real outcomes from real projects. See how we've helped businesses streamline operations 
+                  with custom ERP, finance, and web solutions.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-2">
+                  {['Finance ERP', 'Weaving Software', 'Web Apps', 'GEN-AI'].map((t) => (
+                    <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-3 py-2 text-[12px]" style="font-family: var(--font-mono);">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="py-8">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {process.map((p, i) => (
+          <ScrollReveal delay={i * 80}>
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] p-5 text-center card-lift">
+              <div class="text-[28px] font-bold gradient-text">{p.step}</div>
+              <div class="mt-2 text-[14px] font-semibold text-[var(--ink)]">{p.title}</div>
+              <div class="mt-1 text-[12px] text-[var(--body)]">{p.desc}</div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="py-14">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide mb-2" style="font-family: var(--font-mono);">FEATURED WORK</div>
+        <h2 class="display-lg">Project highlights.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 space-y-6">
+        {caseStudies.map((c, i) => (
+          <ScrollReveal delay={i * 100}>
+            <div class="group rounded-[var(--radius-xl)] bg-[var(--canvas)] border border-[var(--hairline)] shadow-lvl3 overflow-hidden card-lift">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                <!-- Image -->
+                <div class={`relative h-56 lg:h-auto overflow-hidden bg-gradient-to-br ${c.gradient}`}>
+                  <OptimizedImage
+                    src={c.img}
+                    alt={c.title}
+                    loading="eager"
+                    width={600}
+                    height={400}
+                    class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/10"></div>
+                </div>
+                <!-- Content -->
+                <div class="p-6 lg:p-8">
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {c.tags.map((t) => (
+                      <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-3 py-1 text-[11px] font-semibold" style="font-family: var(--font-mono); color: var(--mute);">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 class="text-[18px] font-semibold text-[var(--ink)]">{c.title}</h3>
+                  
+                  <div class="mt-4 space-y-3">
+                    <div>
+                      <div class="text-[11px] text-[var(--color-accent)] font-semibold uppercase tracking-wide" style="font-family: var(--font-mono);">Challenge</div>
+                      <div class="mt-1 text-[14px] leading-[20px] text-[var(--body)]">{c.problem}</div>
+                    </div>
+                    <div>
+                      <div class="text-[11px] text-[var(--color-accent)] font-semibold uppercase tracking-wide" style="font-family: var(--font-mono);">Solution</div>
+                      <div class="mt-1 text-[14px] leading-[20px] text-[var(--body)]">{c.solution}</div>
+                    </div>
+                    <div>
+                      <div class="text-[11px] text-[var(--color-accent)] font-semibold uppercase tracking-wide" style="font-family: var(--font-mono);">Results</div>
+                      <div class="mt-1 text-[14px] leading-[20px] text-[var(--ink)] font-medium">{c.results}</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-6">
+                    <a href="/contact" class="inline-flex items-center gap-2 text-[14px] font-semibold text-[var(--ink)] hover:text-[var(--color-accent)] transition-colors">
+                      Discuss a similar project
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--primary)] text-[var(--on-primary)] shadow-lvl4 p-8 lg:p-12 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div class="relative">
+            <h2 class="display-lg" style="color: var(--on-primary);">Ready to start your project?</h2>
+            <p class="mt-4 text-[16px] leading-[24px] opacity-80 max-w-[60ch] mx-auto">
+              Tell us your requirements and we'll hand-deliver a scoped plan within 48 hours.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+              <a href="/contact" class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--on-primary)] text-[var(--primary)] text-[14px] font-semibold hover:opacity-90 transition">
+                Start a project →
+              </a>
+              <a href="/demo" class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-white/10 text-white border border-white/20 text-[14px] font-semibold hover:bg-white/20 transition">
+                See live demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,57 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  desc: string;
+  delay?: number;
+}
+
+const { value, label, desc, delay = 0 } = Astro.props;
+const numericPart = value.replace(/[^0-9]/g, '');
+const suffix = value.replace(/[0-9]/g, '');
+---
+
+<div class="text-center scroll-reveal opacity-0" data-delay={delay} style="transition: opacity 0.6s ease, transform 0.6s ease; transform: translateY(12px);">
+  <div
+    class="stat-number display-lg counter-value"
+    data-target={numericPart}
+    data-suffix={suffix}
+    style="color: var(--ink); font-variant-numeric: tabular-nums;"
+  >
+    0{suffix}
+  </div>
+  <div class="mt-1 text-[14px] font-semibold text-[var(--ink)]">{label}</div>
+  <div class="mt-1 text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">{desc}</div>
+</div>
+
+<script is:inline>
+  if (!window.__counterInit) {
+    window.__counterInit = true;
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1800;
+            const start = performance.now();
+
+            const animate = (now) => {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(eased * target);
+              el.textContent = current + suffix;
+              if (progress < 1) requestAnimationFrame(animate);
+            };
+            requestAnimationFrame(animate);
+            counterObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    document.querySelectorAll('.counter-value').forEach((el) => counterObserver.observe(el));
+  }
+</script>

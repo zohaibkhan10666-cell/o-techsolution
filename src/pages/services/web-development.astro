@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceWorkflowPreview from '../../components/ServiceWorkflowPreview.astro';
+import GenAIGuardrails from '../../components/GenAIGuardrails.astro';
+import ScrollReveal from '../../components/ScrollReveal.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+
+const bullets = [
+  'MERN / MEAN / Next.js web applications',
+  'Customized modules: e-commerce, food, hospital management',
+  'Production delivery with handover + UAT',
+  'GEN-AI integration (assist + workflow automation) with guardrails',
+];
+
+const projects = [
+  { name: 'E-Commerce Platform', tech: 'Next.js + Stripe', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop&auto=format' },
+  { name: 'Hospital Management', tech: 'MERN Stack', img: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=400&h=250&fit=crop&auto=format' },
+  { name: 'Food Delivery App', tech: 'React + Node', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=250&fit=crop&auto=format' },
+];
+---
+<Layout
+  title="O-Tech Solutions | Web Development"
+  description="MERN, MEAN and Next.js custom web application development with hand-delivered GEN-AI integration."
+>
+  <!-- HERO -->
+  <section class="py-14">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <!-- Image -->
+          <div class="relative h-64 lg:h-auto overflow-hidden">
+            <OptimizedImage
+              src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&auto=format"
+              alt="Web development"
+              loading="eager"
+              width={800}
+              height={600}
+              class="w-full h-full"
+            />
+
+            <!-- Animated decorative overlay (no layout changes) -->
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-0"
+              style="
+                background:
+                  radial-gradient(600px circle at 20% 20%, rgba(0,124,240,0.22), transparent 55%),
+                  radial-gradient(520px circle at 80% 30%, rgba(0,223,216,0.18), transparent 52%);
+                animation: bb-float 6s ease-in-out infinite;
+              "
+            ></div>
+
+            <!-- Subtle shimmer ring -->
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full opacity-70"
+              style="
+                background: conic-gradient(from 180deg, rgba(121,40,202,0.35), rgba(255,0,128,0.25), rgba(0,223,216,0.25), rgba(121,40,202,0.35));
+                filter: blur(10px);
+                animation: bb-shimmer 2.8s ease-in-out infinite;
+              "
+            ></div>
+
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--canvas)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[var(--canvas)]"></div>
+
+            <style>
+              @keyframes bb-float {
+                0%, 100% { transform: translate3d(0, 0, 0); filter: saturate(1); }
+                50% { transform: translate3d(0, -10px, 0); filter: saturate(1.15); }
+              }
+              @keyframes bb-shimmer {
+                0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.65; }
+                50% { transform: rotate(25deg) scale(1.06); opacity: 0.85; }
+              }
+            </style>
+          </div>
+          <!-- Content -->
+          <div class="p-8 lg:p-12 flex items-center">
+            <div class="max-w-[500px]">
+              <ScrollReveal>
+                <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                  WEB DEVELOPMENT
+                </div>
+                <h1 class="display-lg mt-2">MERN / MEAN / Next web-applications + GEN-AI</h1>
+                <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)] max-w-[80ch]">
+                  Hand-delivered web development for real business processes. We integrate GEN-AI where it helps users,
+                  without breaking reliability or data correctness.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-2">
+                  {['MERN', 'MEAN', 'Next.js', 'TypeScript', 'REST APIs', 'GEN-AI'].map((t) => (
+                    <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-3 py-2 text-[12px]" style="font-family: var(--font-mono);">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET + GEN-AI -->
+  <section class="py-8">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="lg:col-span-7">
+          <ScrollReveal>
+            <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-6">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                WHAT YOU GET
+              </div>
+              <ul class="mt-4 space-y-3">
+                {bullets.map((b) => (
+                  <li class="flex gap-3 items-start text-[14px] leading-[20px] text-[var(--body)]">
+                    <span class="mt-1 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 text-[11px] text-[var(--color-accent)]">✓</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <ServiceWorkflowPreview
+              serviceBadge="DELIVERY WORKFLOW"
+              title="Workflow preview (what you'll see)"
+              ctaText="Request this web service →"
+              onRequestHref="/contact"
+              scenarioCards={[
+                { k: 'Modules', v: 'Build the exact pages/workflows your operators use every day.' },
+                { k: 'Role rights', v: 'Permission patterns + audit-friendly access boundaries.' },
+                { k: 'UAT + handover', v: 'Hand-delivered with UAT and production-ready rollout.' },
+              ]}
+            />
+          </ScrollReveal>
+        </div>
+
+        <div class="lg:col-span-5">
+          <ScrollReveal delay={100} direction="left">
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 p-6">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                GEN-AI USE CASES
+              </div>
+              <div class="mt-4 space-y-3">
+                {[
+                  { k: 'Assist', v: 'Summaries, suggestions, and guided workflows for operators.', icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' },
+                  { k: 'Validate', v: 'Rule-aware checks to keep outputs consistent with data logic.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+                  { k: 'Automate', v: 'Generate drafts for reports, invoices, and UI workflows (human-in-the-loop).', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+                ].map((x) => (
+                  <div class="group rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-4 hover:bg-[var(--canvas-soft-2)] transition-colors duration-200">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center group-hover:bg-[var(--color-accent)] transition-colors duration-300">
+                        <svg class="w-4 h-4 text-[var(--color-accent)] group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d={x.icon} />
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">
+                          {x.k}
+                        </div>
+                        <div class="mt-1 text-[14px] font-semibold text-[var(--ink)]">{x.v}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div class="mt-6">
+                <a href="/contact" class="inline-flex items-center justify-center w-full h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-95 transition">
+                  Request this service →
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200} direction="left">
+            <GenAIGuardrails
+              title="GEN-AI guardrails (safe automation)"
+              note="AI helps you move faster—but never compromises data correctness or approval steps."
+            />
+          </ScrollReveal>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT EXAMPLES -->
+  <section class="py-14 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide mb-2" style="font-family: var(--font-mono);">EXAMPLES</div>
+        <h2 class="display-lg">What we've built.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {projects.map((p, i) => (
+          <ScrollReveal delay={i * 100}>
+            <div class="group rounded-[var(--radius-xl)] bg-[var(--canvas)] border border-[var(--hairline)] shadow-lvl3 overflow-hidden card-lift">
+              <div class="relative h-44 overflow-hidden">
+                <OptimizedImage
+                  src={p.img}
+                  alt={p.name}
+                  loading="eager"
+                  width={400}
+                  height={250}
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div class="absolute bottom-4 left-4">
+                  <div class="text-[14px] font-semibold text-white">{p.name}</div>
+                  <div class="text-[12px] text-white/70" style="font-family: var(--font-mono);">{p.tech}</div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

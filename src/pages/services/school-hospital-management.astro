@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceWorkflowPreview from '../../components/ServiceWorkflowPreview.astro';
+import GenAIGuardrails from '../../components/GenAIGuardrails.astro';
+
+const modules = [
+  { title: 'User Management & Rights', desc: 'Role-based access for daily workflows (mock).' },
+  { title: 'Operational Workflows', desc: 'Day-to-day operations designed for speed and clarity (mock).' },
+  { title: 'Reports & Tracking', desc: 'Report-ready outputs built for management review (mock).' },
+  { title: 'Hospital / School Controls', desc: 'Operational consistency with controls (mock).' },
+];
+
+const outcomes = [
+  'Faster daily operations',
+  'Reports aligned to real usage',
+  'Role-based security and audit-friendly flows',
+];
+---
+
+<Layout title="O-Tech Solutions | School & Hospital Management" description="Travel, school, and hospital management system software with user rights, workflows, and reports.">
+  <section class="py-14">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 p-8">
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+          SCHOOL / HOSPITAL MANAGEMENT
+        </div>
+        <h1 class="display-lg mt-2">Operational management with role rights & report-ready outputs</h1>
+        <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)] max-w-[90ch]">
+          Hand-delivered management systems for schools and hospitals—built with workflows, permissions, and
+          reports for daily operations.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {modules.map((m) => (
+                <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-6">
+                  <div class="text-[14px] font-semibold text-[var(--ink)]">{m.title}</div>
+                  <div class="mt-2 text-[14px] leading-[20px] text-[var(--body)]">{m.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 p-6">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                DELIVERED OUTCOMES
+              </div>
+
+              <ul class="mt-4 space-y-3">
+                {outcomes.map((o) => (
+                  <li class="flex gap-3 items-start text-[14px] leading-[20px] text-[var(--body)]">
+                    <span class="mt-1 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[var(--canvas-soft)] border border-[var(--hairline)]">✓</span>
+                    <span>{o}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-6">
+                <a href="/contact" class="inline-flex items-center justify-center w-full h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-95 transition">
+                  Request management system →
+                </a>
+                <div class="mt-3 text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">
+                  Hand-delivered process with UAT & delivery support.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ServiceWorkflowPreview
+          serviceBadge="DELIVERY WORKFLOW"
+          title="School & hospital workflow preview (what you’ll see)"
+          ctaText="Request management system →"
+          onRequestHref="/contact"
+          scenarioCards={[
+            { k: 'Modules', v: 'Users, rights, workflows, and operational reports.' },
+            { k: 'Role rights', v: 'Department-level access patterns with consistency.' },
+            { k: 'UAT + outputs', v: 'UAT on daily scenarios + report-ready tracking.' },
+          ]}
+        />
+
+        <GenAIGuardrails
+          title="GEN-AI guardrails (safe automation)"
+          note="AI drafts summaries and notes—final decisions remain under your workflow rules."
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

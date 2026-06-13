@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const modules = [
+  { 
+    code: 'KACHI PARCHI', 
+    hint: 'Inward/Outward note entry flow',
+    description: 'Track incoming and outgoing notes with ledger mapping, user controls, and audit-ready outputs.',
+    features: ['Inward/Outward tracking', 'Ledger mapping', 'Role-based access', 'Audit trails'],
+    gradient: 'from-emerald-500/10 to-teal-500/10',
+  },
+  { 
+    code: 'TRIAL BALANCE', 
+    hint: 'Report-ready finance summary view',
+    description: 'View complete trial balance with level-3 head reports, cash/bank summaries, and journal entries.',
+    features: ['Level-3 reports', 'Cash/bank views', 'Journal entries', 'Export ready'],
+    gradient: 'from-blue-500/10 to-cyan-500/10',
+  },
+  { 
+    code: 'WEAVING ERP', 
+    hint: 'Grey fabric management & tracking',
+    description: 'Complete weaving workflow from grey fabric to cutting, trading, and parts management.',
+    features: ['Fabric tracking', 'Cutting reports', 'Parts management', 'Daily summaries'],
+    gradient: 'from-purple-500/10 to-pink-500/10',
+  },
+  { 
+    code: 'TRAVEL MODULE', 
+    hint: 'Booking & invoice management',
+    description: 'End-to-end travel agency operations with bookings, invoices, and role-based workflows.',
+    features: ['Booking system', 'Invoice generation', 'Role controls', 'Itinerary builder'],
+    gradient: 'from-amber-500/10 to-orange-500/10',
+  },
+];
+
+const demoSteps = [
+  { step: '01', title: 'Select Module', desc: 'Choose the module you want to explore' },
+  { step: '02', title: 'Browse Data', desc: 'Navigate through mock data entries' },
+  { step: '03', title: 'Test Workflows', desc: 'Experience the user interface flow' },
+];
+---
+
+<Layout title="O-Tech Solutions | Live Demo Sandbox" description="Read-only demo sandbox using safe mock data.">
+  <!-- HERO -->
+  <section class="py-14">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <!-- Image -->
+          <div class="relative h-64 lg:h-auto overflow-hidden">
+            <OptimizedImage
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format"
+              alt="Dashboard demo"
+              loading="eager"
+              width={800}
+              height={600}
+              class="w-full h-full"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--canvas)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[var(--canvas)]"></div>
+          </div>
+          <!-- Content -->
+          <div class="p-8 lg:p-12 flex items-center">
+            <div class="max-w-[500px]">
+              <ScrollReveal>
+                <div class="inline-flex items-center gap-2">
+                  <span class="inline-flex w-2.5 h-2.5 rounded-full bg-[var(--color-accent)] live-indicator-pulse"></span>
+                  <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                    LIVE DEMO SANDBOX
+                  </div>
+                </div>
+                <h1 class="display-lg mt-3">Read-only module preview (mock data)</h1>
+                <p class="mt-3 text-[16px] leading-[24px] text-[var(--body)] max-w-[70ch]">
+                  Explore our software modules with safe, frontend-only mock data. 
+                  No backend required — see how the interface works before committing.
+                </p>
+                <div class="mt-6">
+                  <a
+                    href="/contact"
+                    class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-95 transition"
+                  >
+                    Request your module
+                  </a>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="py-8">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-4">
+        {demoSteps.map((s, i) => (
+          <ScrollReveal delay={i * 80}>
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] p-5 text-center card-lift">
+              <div class="text-[24px] font-bold gradient-text">{s.step}</div>
+              <div class="mt-2 text-[14px] font-semibold text-[var(--ink)]">{s.title}</div>
+              <div class="mt-1 text-[12px] text-[var(--body)]">{s.desc}</div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="py-14">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide mb-2" style="font-family: var(--font-mono);">AVAILABLE MODULES</div>
+        <h2 class="display-lg">Explore the sandbox.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {modules.map((m, i) => (
+          <ScrollReveal delay={i * 80}>
+            <div class="group rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 overflow-hidden card-lift">
+              <!-- Header with gradient -->
+              <div class={`relative h-32 bg-gradient-to-br ${m.gradient} overflow-hidden`}>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-[48px] font-bold text-[var(--ink)] opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                    {m.code}
+                  </div>
+                </div>
+                <!-- Animated corner -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[var(--color-accent)]/10 to-transparent rounded-bl-[32px] group-hover:w-28 group-hover:h-28 transition-all duration-500"></div>
+                <!-- Live indicator -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--canvas)]/90 backdrop-blur-sm px-3 py-1">
+                  <span class="w-2 h-2 rounded-full bg-[var(--color-accent)] live-indicator-pulse"></span>
+                  <span class="text-[10px] font-semibold" style="font-family: var(--font-mono); color: var(--mute);">LIVE</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">MODULE</div>
+                <div class="mt-2 text-[18px] font-semibold text-[var(--ink)]">{m.code}</div>
+                <div class="mt-2 text-[14px] leading-[20px] text-[var(--body)]">{m.description}</div>
+
+                <!-- Features list -->
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {m.features.map((f) => (
+                    <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-3 py-1 text-[11px]" style="font-family: var(--font-mono); color: var(--mute);">
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Mock preview -->
+                <div class="mt-5 rounded-[var(--radius-lg)] bg-[var(--canvas-soft)] border border-[var(--hairline)] p-4">
+                  <div class="text-[12px]" style="font-family: var(--font-mono); color: var(--mute);">PREVIEW (PLACEHOLDER)</div>
+                  <div class="mt-3 h-28 rounded-[var(--radius-md)] bg-[var(--canvas-soft-2)] border border-[var(--hairline)] flex items-center justify-center shimmer">
+                    <span class="text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">Interactive demo coming soon</span>
+                  </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-5">
+                  <a href="/contact" class="inline-flex items-center gap-2 text-[14px] font-semibold text-[var(--ink)] hover:text-[var(--color-accent)] transition-colors group-hover:underline underline-offset-4">
+                    Request this module
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--primary)] text-[var(--on-primary)] shadow-lvl4 p-8 lg:p-12 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div class="relative">
+            <h2 class="display-lg" style="color: var(--on-primary);">Want a custom module?</h2>
+            <p class="mt-4 text-[16px] leading-[24px] opacity-80 max-w-[60ch] mx-auto">
+              We build custom ERP, finance, and web modules tailored to your exact workflows.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+              <a href="/contact" class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--on-primary)] text-[var(--primary)] text-[14px] font-semibold hover:opacity-90 transition">
+                Start a project →
+              </a>
+              <a href="/about" class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-white/10 text-white border border-white/20 text-[14px] font-semibold hover:bg-white/20 transition">
+                Learn about us
+              </a>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</Layout>

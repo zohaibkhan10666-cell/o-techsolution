@@ -1,0 +1,276 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StatsSection from '../components/StatsSection.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const values = [
+  {
+    title: 'Hand-Delivered, Always.',
+    desc: "We don't just ship code — we walk through every module with your team, run UAT sessions, and ensure your staff can use it from day one.",
+    icon: 'M5 13l4 4L19 7',
+  },
+  {
+    title: 'Correctness Over Speed.',
+    desc: 'Finance, accounting, and ERP systems must be correct first. We build with production data flows in mind — not demo screens.',
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+  {
+    title: 'Specialized, Not Generic.',
+    desc: 'We know weaving ERPs. We know Oracle PL/SQL finance modules. We know what a Kachi Parchi workflow needs. That depth is our edge.',
+    icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+  },
+  {
+    title: 'GEN-AI with Guardrails.',
+    desc: 'We integrate AI where it helps — summaries, drafts, guided entry — but with human-in-the-loop patterns so your ERP logic stays intact.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+];
+
+const techStack = [
+  { category: 'Web', items: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Express'], color: 'from-blue-500 to-cyan-500' },
+  { category: 'Database', items: ['Oracle PL/SQL', 'PostgreSQL', 'MySQL', 'SQL Server'], color: 'from-emerald-500 to-teal-500' },
+  { category: 'ERP & Finance', items: ['Custom ERP modules', 'Ledger mapping', 'Report engines', 'UAT frameworks'], color: 'from-amber-500 to-orange-500' },
+  { category: 'AI & Integrations', items: ['OpenAI APIs', 'LangChain', 'Webhook integrations', 'REST / GraphQL APIs'], color: 'from-purple-500 to-pink-500' },
+];
+
+const industries = [
+  { name: 'Finance & Accounting', icon: '📊', desc: 'Trial balance, journals, level-3 reports, cash/bank flows.', img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop&auto=format' },
+  { name: 'Textile & Weaving', icon: '🧵', desc: 'Grey fabric, print cutting, trading, parts management.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop&auto=format' },
+  { name: 'Web & E-commerce', icon: '🌐', desc: 'MERN/MEAN/Next.js apps, GEN-AI-integrated products.', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&auto=format' },
+  { name: 'Travel Agencies', icon: '✈️', desc: 'Bookings, itineraries, invoices, role-based ops.', img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop&auto=format' },
+  { name: 'Healthcare', icon: '🏥', desc: 'Hospital & school management, workflows, reporting.', img: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=400&h=300&fit=crop&auto=format' },
+  { name: 'Retail & Trade', icon: '🏷️', desc: 'Yarn stock, sizing bills, Kachi/Pakki Parchi systems.', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&auto=format' },
+];
+
+const team = [
+  { name: 'Engineering Team', role: 'Full-stack + ERP Specialists', desc: 'React, Next.js, Oracle PL/SQL, custom ERP modules.' },
+  { name: 'Domain Experts', role: 'Finance & Textile', desc: 'Chart of accounts, trial balance, weaving workflows.' },
+  { name: 'GEN-AI Integration', role: 'AI + Automation', desc: 'OpenAI, LangChain, safe AI patterns for ERP.' },
+];
+---
+
+<Layout
+  title="About O-Tech Solutions | Custom Software, Hand-Delivered."
+  description="Learn about O-Tech Solutions — a specialized software company delivering Oracle PL/SQL ERP, weaving software, web development, and GEN-AI-integrated systems."
+>
+  <!-- HERO -->
+  <section class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <!-- Image side -->
+          <div class="relative h-64 lg:h-auto overflow-hidden">
+            <OptimizedImage
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&auto=format"
+              alt="Team collaboration"
+              loading="eager"
+              width={800}
+              height={600}
+              class="w-full h-full"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--canvas)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[var(--canvas)]"></div>
+          </div>
+          <!-- Content side -->
+          <div class="p-8 lg:p-12 flex items-center">
+            <div class="max-w-[500px]">
+              <ScrollReveal>
+                <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                  ABOUT US
+                </div>
+                <h1 class="display-xl mt-4">
+                  We build software that works the way your business works.
+                </h1>
+                <p class="mt-6 text-[16px] leading-[26px] text-[var(--body)]">
+                  O-Tech Solutions is a specialized software company focused on delivering production-ready, 
+                  hand-delivered systems for real operations — from Oracle PL/SQL finance modules to 
+                  weaving/textile ERPs, web applications, and GEN-AI integrated platforms.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="/contact"
+                    class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--primary)] text-[var(--on-primary)] text-[14px] font-semibold hover:opacity-90 transition"
+                  >
+                    Start a project
+                  </a>
+                  <a
+                    href="/case-studies"
+                    class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--canvas-soft)] text-[var(--ink)] border border-[var(--hairline)] text-[14px] font-semibold hover:bg-[var(--canvas-soft-2)] transition"
+                  >
+                    View case studies
+                  </a>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <StatsSection />
+
+  <!-- WHAT WE BELIEVE -->
+  <section class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">OUR VALUES</div>
+        <h2 class="display-lg mt-2">What we believe in.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {values.map((v, i) => (
+          <ScrollReveal delay={i * 80}>
+            <div class="group rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 p-6 card-lift">
+              <div class="flex items-start gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-[var(--radius-lg)] bg-[var(--color-accent)]/10 flex items-center justify-center group-hover:bg-[var(--color-accent)] transition-colors duration-300">
+                  <svg class="w-5 h-5 text-[var(--color-accent)] group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={v.icon} />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-[16px] font-semibold text-[var(--ink)]">{v.title}</h3>
+                  <p class="mt-3 text-[14px] leading-[22px] text-[var(--body)]">{v.desc}</p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES SERVED -->
+  <section class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">INDUSTRIES</div>
+        <h2 class="display-lg mt-2">Industries we serve.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {industries.map((ind, i) => (
+          <ScrollReveal delay={i * 60}>
+            <div class="group rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas-soft)] overflow-hidden card-lift">
+              <div class="relative h-40 overflow-hidden">
+                <OptimizedImage
+                  src={ind.img}
+                  alt={ind.name}
+                  loading="eager"
+                  width={400}
+                  height={300}
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute bottom-4 left-4">
+                  <div class="text-[24px]" aria-hidden="true">{ind.icon}</div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="text-[15px] font-semibold text-[var(--ink)]">{ind.name}</div>
+                <div class="mt-2 text-[13px] leading-[20px] text-[var(--body)]">{ind.desc}</div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">TECH STACK</div>
+        <h2 class="display-lg mt-2">Technologies we work with.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {techStack.map((stack, i) => (
+          <ScrollReveal delay={i * 80}>
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl2 p-5 overflow-hidden relative">
+              <!-- Gradient accent top -->
+              <div class={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stack.color}`}></div>
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">{stack.category}</div>
+              <ul class="mt-4 space-y-2">
+                {stack.items.map((item) => (
+                  <li class="flex items-center gap-2 text-[14px] text-[var(--body)]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="py-16 bg-[var(--canvas)]">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">OUR TEAM</div>
+        <h2 class="display-lg mt-2">Specialists, not generalists.</h2>
+      </ScrollReveal>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {team.map((t, i) => (
+          <ScrollReveal delay={i * 100}>
+            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 p-6 text-center card-lift">
+              <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[var(--color-accent)] to-[#007cf0] flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                </svg>
+              </div>
+              <div class="mt-4 text-[16px] font-semibold text-[var(--ink)]">{t.name}</div>
+              <div class="mt-1 text-[12px] text-[var(--color-accent)] font-semibold" style="font-family: var(--font-mono);">{t.role}</div>
+              <div class="mt-3 text-[13px] leading-[20px] text-[var(--body)]">{t.desc}</div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HAND-DELIVERY PLEDGE -->
+  <section class="py-16">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <ScrollReveal>
+        <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--primary)] text-[var(--on-primary)] shadow-lvl4 p-8 lg:p-12 overflow-hidden relative">
+          <!-- Decorative elements -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+          
+          <div class="relative max-w-[700px]">
+            <div class="text-[12px] uppercase tracking-wide opacity-60" style="font-family: var(--font-mono);">
+              OUR COMMITMENT
+            </div>
+            <h2 class="display-lg mt-4" style="color: var(--on-primary);">
+              We don't ship and disappear.
+            </h2>
+            <p class="mt-4 text-[16px] leading-[26px] opacity-80">
+              Every project we deliver includes: a full UAT session with your team, 
+              documentation of all modules and reports, a training walkthrough, 
+              and post-delivery support to handle the real-world edge cases that 
+              always appear after go-live.
+            </p>
+            <p class="mt-4 text-[16px] leading-[26px] opacity-80">
+              That's what "Hand-Delivered" means to us.
+            </p>
+            <div class="mt-8">
+              <a
+                href="/contact"
+                class="inline-flex items-center justify-center h-12 px-7 rounded-[var(--radius-pill)] bg-[var(--on-primary)] text-[var(--primary)] text-[14px] font-semibold hover:opacity-90 transition"
+              >
+                Start your project today →
+              </a>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</Layout>

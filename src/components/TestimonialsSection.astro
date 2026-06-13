@@ -1,0 +1,137 @@
+---
+const testimonials = [
+  {
+    name: 'Tariq Mehmood',
+    role: 'CFO, Textile Group',
+    industry: 'Finance & ERP',
+    quote: 'O-Tech delivered an Oracle PL/SQL finance module that generates our trial balance and level-3 reports on demand. The handdelivery process was smooth — they aligned with our chart of accounts before writing a single line.',
+    stars: 5,
+  },
+  {
+    name: 'Usman Raza',
+    role: 'Factory Owner, Weaving Unit',
+    industry: 'Weaving ERP',
+    quote: 'We manage 200+ looms with their weaving ERP. Grey fabric tracking, cutting reports, and parts management are all connected. The daily reports replaced our manual registers completely.',
+    stars: 5,
+  },
+  {
+    name: 'Ahmed Siddiqui',
+    role: 'Owner, Travel Agency',
+    industry: 'Travel Software',
+    quote: 'The booking and invoice module they delivered works exactly how our agency operates. User rights control was set up perfectly — agents see only what they need, supervisors see everything.',
+    stars: 5,
+  },
+  {
+    name: 'Bilal Hassan',
+    role: 'Hospital Admin',
+    industry: 'Hospital Management',
+    quote: 'They understood our daily workflow requirements within the first discovery session. The final system had role-based access for every department. Delivery was clean — training and UAT included.',
+    stars: 5,
+  },
+  {
+    name: 'Farrukh Qureshi',
+    role: 'Accounts Manager',
+    industry: 'Finance & Accounts',
+    quote: 'Kachi and Pakki Parchi flows were built exactly as we required — with inward/outward ledger mapping and user-based controls. Our auditors praised the traceable data outputs.',
+    stars: 5,
+  },
+];
+---
+
+<section class="py-16">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between gap-6 flex-wrap mb-10">
+      <div>
+        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">TESTIMONIALS</div>
+        <h2 class="display-lg mt-2">What our clients say.</h2>
+      </div>
+      <a href="/contact" class="text-[14px] font-semibold text-[var(--ink)] hover:underline underline-offset-4 transition">
+        Start your project →
+      </a>
+    </div>
+
+    <!-- Scrollable carousel -->
+    <div class="relative overflow-hidden">
+      <div
+        id="testimonials-track"
+        class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        {testimonials.map((t) => (
+          <div
+            class="snap-start flex-none w-[340px] sm:w-[380px] rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 p-6 flex flex-col"
+          >
+            <!-- Stars -->
+            <div class="flex gap-1" aria-label={`${t.stars} out of 5 stars`}>
+              {Array.from({ length: t.stars }).map(() => (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-[#F5A623]" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+
+            <!-- Quote -->
+            <blockquote class="mt-4 text-[14px] leading-[22px] text-[var(--body)] flex-1">
+              "{t.quote}"
+            </blockquote>
+
+            <!-- Author -->
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[var(--canvas-soft)] border border-[var(--hairline)] flex items-center justify-center text-[14px] font-semibold text-[var(--ink)]">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <div class="text-[14px] font-semibold text-[var(--ink)]">{t.name}</div>
+                <div class="text-[12px] text-[var(--mute)]">{t.role}</div>
+              </div>
+              <div class="ml-auto">
+                <span class="rounded-full border border-[var(--hairline)] bg-[var(--canvas-soft)] px-2.5 py-1 text-[11px]" style="font-family: var(--font-mono); color: var(--mute);">
+                  {t.industry}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Scroll controls -->
+      <div class="mt-6 flex items-center gap-3">
+        <button
+          id="prev-testimonial"
+          class="w-10 h-10 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] flex items-center justify-center hover:bg-[var(--canvas-soft-2)] transition"
+          aria-label="Previous testimonial"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button
+          id="next-testimonial"
+          class="w-10 h-10 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] flex items-center justify-center hover:bg-[var(--canvas-soft-2)] transition"
+          aria-label="Next testimonial"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">
+          Scroll or use arrows
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const track = document.getElementById('testimonials-track');
+    const prev = document.getElementById('prev-testimonial');
+    const next = document.getElementById('next-testimonial');
+    const cardWidth = 380 + 16; // card width + gap
+
+    prev?.addEventListener('click', () => {
+      track?.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    next?.addEventListener('click', () => {
+      track?.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+  </script>
+</section>

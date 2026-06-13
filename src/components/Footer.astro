@@ -1,0 +1,116 @@
+---
+const services = [
+  { label: 'Web Development', href: '/services/web-development' },
+  { label: 'Oracle PL/SQL Finance', href: '/services/oracle-finance' },
+  { label: 'Weaving Software', href: '/services/weaving' },
+  { label: 'Finance & Accounts', href: '/services/finance-accounts' },
+  { label: 'Travel Agency Software', href: '/services/travel-agency-erp' },
+  { label: 'School & Hospital System', href: '/services/school-hospital-management' },
+];
+
+const company = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Demo Sandbox', href: '/demo' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--hairline)] bg-[var(--canvas)]">
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+      <!-- Brand column -->
+      <div class="md:col-span-1">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg border border-[var(--hairline)] flex items-center justify-center shadow-lvl1 bg-[var(--canvas-soft)]">
+            <span class="text-[var(--ink)] text-[15px] font-bold">O</span>
+          </div>
+          <div>
+            <div class="text-[var(--ink)] text-[14px] font-semibold">O-Tech Solutions</div>
+            <div class="text-[11px] text-[var(--mute)]" style="font-family: var(--font-mono);">Hand-Delivered Software</div>
+          </div>
+        </a>
+        <p class="mt-4 text-[13px] leading-[20px] text-[var(--body)] max-w-[230px]">
+          Web development + Oracle PL/SQL ERP + Weaving & textile software + GEN-AI integration. Built and hand-delivered for real operations.
+        </p>
+
+        <!-- Social / contact quick links -->
+        <div class="mt-5 flex flex-col gap-2">
+          <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[13px] text-[var(--body)] hover:text-[var(--ink)] transition">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: #25D366;" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            WhatsApp Chat
+          </a>
+          <a href="tel:+923001234567" class="inline-flex items-center gap-2 text-[13px] text-[var(--body)] hover:text-[var(--ink)] transition">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .07h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            +92 300 000 0000
+          </a>
+        </div>
+      </div>
+
+      <!-- Services column -->
+      <div>
+        <div class="text-[11px] text-[var(--mute)] uppercase tracking-wide mb-4" style="font-family: var(--font-mono);">Services</div>
+        <div class="flex flex-col gap-2.5">
+          {services.map((l) => (
+            <a class="text-[13px] text-[var(--body)] hover:text-[var(--ink)] transition" href={l.href}>
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Company column -->
+      <div>
+        <div class="text-[11px] text-[var(--mute)] uppercase tracking-wide mb-4" style="font-family: var(--font-mono);">Company</div>
+        <div class="flex flex-col gap-2.5">
+          {company.map((l) => (
+            <a class="text-[13px] text-[var(--body)] hover:text-[var(--ink)] transition" href={l.href}>
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA column -->
+      <div>
+        <div class="text-[11px] text-[var(--mute)] uppercase tracking-wide mb-4" style="font-family: var(--font-mono);">Get Started</div>
+        <p class="text-[13px] leading-[20px] text-[var(--body)]">
+          Tell us your software requirement. We'll hand-deliver a scoped plan within 48 hours.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center h-10 px-5 rounded-full bg-[var(--primary)] text-[var(--on-primary)] text-[13px] font-semibold hover:opacity-90 transition"
+          >
+            Project Inquiry →
+          </a>
+        </div>
+        <div class="mt-4 rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-4">
+          <div class="text-[11px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">Domain</div>
+          <div class="mt-1 text-[13px] font-semibold text-[var(--ink)]">o-techsolution.com</div>
+          <div class="mt-1 text-[11px] text-[var(--mute)]" style="font-family: var(--font-mono);">Custom Software · Hand-Delivered</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 border-t border-[var(--hairline)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="text-[12px] text-[var(--mute)]">
+        © {year} O-Tech Solutions. All rights reserved.
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="/about" class="text-[12px] text-[var(--mute)] hover:text-[var(--body)] transition">About</a>
+        <a href="/contact" class="text-[12px] text-[var(--mute)] hover:text-[var(--body)] transition">Contact</a>
+        <a href="/demo" class="text-[12px] text-[var(--mute)] hover:text-[var(--body)] transition">Demo</a>
+        <span class="text-[12px] text-[var(--mute)]" style="font-family: var(--font-mono);">Built with Astro + Tailwind v4</span>
+      </div>
+    </div>
+  </div>
+</footer>
