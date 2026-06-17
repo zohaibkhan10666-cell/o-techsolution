@@ -10,6 +10,7 @@ const modules = [
     description: 'Track incoming and outgoing notes with ledger mapping, user controls, and audit-ready outputs.',
     features: ['Inward/Outward tracking', 'Ledger mapping', 'Role-based access', 'Audit trails'],
     gradient: 'from-emerald-500/10 to-teal-500/10',
+    img: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&h=300&fit=crop',
   },
   { 
     code: 'TRIAL BALANCE', 
@@ -17,6 +18,7 @@ const modules = [
     description: 'View complete trial balance with level-3 head reports, cash/bank summaries, and journal entries.',
     features: ['Level-3 reports', 'Cash/bank views', 'Journal entries', 'Export ready'],
     gradient: 'from-blue-500/10 to-cyan-500/10',
+    img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=300&fit=crop',
   },
   { 
     code: 'WEAVING ERP', 
@@ -24,6 +26,7 @@ const modules = [
     description: 'Complete weaving workflow from grey fabric to cutting, trading, and parts management.',
     features: ['Fabric tracking', 'Cutting reports', 'Parts management', 'Daily summaries'],
     gradient: 'from-purple-500/10 to-pink-500/10',
+    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
   },
   { 
     code: 'TRAVEL MODULE', 
@@ -31,6 +34,7 @@ const modules = [
     description: 'End-to-end travel agency operations with bookings, invoices, and role-based workflows.',
     features: ['Booking system', 'Invoice generation', 'Role controls', 'Itinerary builder'],
     gradient: 'from-amber-500/10 to-orange-500/10',
+    img: 'https://media.istockphoto.com/id/175518669/photo/booking-button-virtual-keyboard.webp?a=1&b=1&s=612x612&w=0&k=20&c=jFQhH9Koe3Xu4uMFDiDu1hICM9cEr_FkEo9YCP-U5_4=',
   },
 ];
 
@@ -50,8 +54,8 @@ const demoSteps = [
           <!-- Image -->
           <div class="relative h-64 lg:h-auto overflow-hidden">
             <OptimizedImage
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format"
-              alt="Dashboard demo"
+              src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=600&fit=crop"
+              alt="Weaving and travel ERP demo"
               loading="eager"
               width={800}
               height={600}
@@ -119,15 +123,22 @@ const demoSteps = [
         {modules.map((m, i) => (
           <ScrollReveal delay={i * 80}>
             <div class="group rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl3 overflow-hidden card-lift">
-              <!-- Header with gradient -->
-              <div class={`relative h-32 bg-gradient-to-br ${m.gradient} overflow-hidden`}>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="text-[48px] font-bold text-[var(--ink)] opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                    {m.code}
-                  </div>
+              <!-- Header with image -->
+              <div class={`relative h-36 bg-gradient-to-br ${m.gradient} overflow-hidden`}>
+                <OptimizedImage
+                  src={m.img}
+                  alt={m.code}
+                  loading="eager"
+                  width={600}
+                  height={300}
+                  class="w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                <!-- Module name overlay -->
+                <div class="absolute bottom-3 left-4 right-4">
+                  <div class="text-[20px] font-bold text-white drop-shadow-sm">{m.code}</div>
+                  <div class="text-[12px] text-white/70" style="font-family: var(--font-mono);">{m.hint}</div>
                 </div>
-                <!-- Animated corner -->
-                <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[var(--color-accent)]/10 to-transparent rounded-bl-[32px] group-hover:w-28 group-hover:h-28 transition-all duration-500"></div>
                 <!-- Live indicator -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--canvas)]/90 backdrop-blur-sm px-3 py-1">
                   <span class="w-2 h-2 rounded-full bg-[var(--color-accent)] live-indicator-pulse"></span>

@@ -122,16 +122,21 @@ const testimonials = [
   </div>
 
   <script is:inline>
-    const track = document.getElementById('testimonials-track');
-    const prev = document.getElementById('prev-testimonial');
-    const next = document.getElementById('next-testimonial');
-    const cardWidth = 380 + 16; // card width + gap
+    function initTestimonials() {
+      const track = document.getElementById('testimonials-track');
+      const prev = document.getElementById('prev-testimonial');
+      const next = document.getElementById('next-testimonial');
+      const cardWidth = 380 + 16;
 
-    prev?.addEventListener('click', () => {
-      track?.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-    });
-    next?.addEventListener('click', () => {
-      track?.scrollBy({ left: cardWidth, behavior: 'smooth' });
-    });
+      prev?.addEventListener('click', () => {
+        track?.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      });
+      next?.addEventListener('click', () => {
+        track?.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      });
+    }
+
+    initTestimonials();
+    document.addEventListener('astro:after-swap', initTestimonials);
   </script>
 </section>

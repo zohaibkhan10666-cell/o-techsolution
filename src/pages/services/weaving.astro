@@ -2,12 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import ServiceWorkflowPreview from '../../components/ServiceWorkflowPreview.astro';
 import GenAIGuardrails from '../../components/GenAIGuardrails.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
 
 const features = [
-  { title: 'Grey Fabric Management', desc: 'Track batches, widths, weights, and production status across stages.' },
-  { title: 'Print Cutting', desc: 'Cutting workflow with traceable output mapped to orders and lots.' },
-  { title: 'Trading Management', desc: 'Trade movement tracking with report-ready summaries.' },
-  { title: 'Parts Management System', desc: 'Manage parts, usage history, and availability for operations.' },
+  { title: 'Grey Fabric Management', desc: 'Track batches, widths, weights, and production status across stages.', img: 'https://plus.unsplash.com/premium_photo-1682148883506-c1ee71fd2809?q=80&w=800&h=360&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+
+  { title: 'Print Cutting', desc: 'Cutting workflow with traceable output mapped to orders and lots.', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=360&fit=crop' },
+  { title: 'Trading Management', desc: 'Trade movement tracking with report-ready summaries.', img: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=360&fit=crop' },
+  { title: 'Parts Management System', desc: 'Manage parts, usage history, and availability for operations.', img: 'https://plus.unsplash.com/premium_photo-1723867287632-ef976a2e7fb5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
 ];
 
 const deliveryNotes = [
@@ -20,32 +22,75 @@ const deliveryNotes = [
 <Layout title="O-Tech Solutions | Weaving Software" description="Weaving/textile ERP software for grey fabric management, print cutting, trading management, and parts management.">
   <section class="py-14">
     <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 p-8">
-        <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
-          WEAVING / TEXTILE ERP
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <div class="relative h-64 lg:h-auto overflow-hidden">
+            <OptimizedImage
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop"
+              alt="Weaving textile ERP software"
+              loading="eager"
+              width={800}
+              height={600}
+              class="w-full h-full"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--canvas)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[var(--canvas)]"></div>
+          </div>
+          <div class="p-8 lg:p-12 flex items-center">
+            <div class="max-w-[500px]">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                WEAVING / TEXTILE ERP
+              </div>
+              <h1 class="display-lg mt-2">Grey fabric + cutting + trading + parts management</h1>
+              <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)] max-w-[90ch]">
+                Hand-delivered textile ERP modules built for real operations—so production, cutting, trading, and parts stay connected
+                with accurate reporting.
+              </p>
+            </div>
+          </div>
         </div>
-        <h1 class="display-lg mt-2">Grey fabric + cutting + trading + parts management</h1>
-        <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)] max-w-[90ch]">
-          Hand-delivered textile ERP modules built for real operations—so production, cutting, trading, and parts stay connected
-          with accurate reporting.
-        </p>
+      </div>
 
         <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {features.map((f) => (
-                <div class="rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-6">
-                  <div class="text-[14px] font-semibold text-[var(--ink)]">{f.title}</div>
-                  <div class="mt-2 text-[14px] leading-[20px] text-[var(--body)]">{f.desc}</div>
+                <div class="group rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--canvas-soft)] overflow-hidden">
+                  <div class="relative h-36 overflow-hidden">
+                    <OptimizedImage
+                      src={f.img}
+                      alt={f.title}
+                      loading="eager"
+                      width={600}
+                      height={300}
+                      class="w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--canvas-soft)] via-[var(--canvas-soft)]/30 to-transparent"></div>
+                  </div>
+                  <div class="p-5">
+                    <div class="text-[14px] font-semibold text-[var(--ink)]">{f.title}</div>
+                    <div class="mt-2 text-[13px] leading-[18px] text-[var(--body)]">{f.desc}</div>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div class="mt-6 rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas-soft)] p-6">
-              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
-                TYPICAL DELIVERY
+            <div class="mt-6 rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas-soft)] overflow-hidden">
+              <div class="relative h-40 overflow-hidden">
+                <OptimizedImage
+                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=350&fit=crop"
+                  alt="Weaving delivery workflow"
+                  loading="eager"
+                  width={800}
+                  height={350}
+                  class="w-full h-full"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--canvas-soft)] via-[var(--canvas-soft)]/40 to-transparent"></div>
               </div>
-              <ul class="mt-4 space-y-3">
+              <div class="p-6">
+                <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">
+                  TYPICAL DELIVERY
+                </div>
+                <ul class="mt-4 space-y-3">
                 {deliveryNotes.map((d) => (
                   <li class="flex gap-3 items-start text-[14px] leading-[20px] text-[var(--body)]">
                     <span class="mt-1 inline-flex w-5 h-5 items-center justify-center rounded-full bg-[var(--canvas)] border border-[var(--hairline)]">✓</span>
@@ -53,6 +98,7 @@ const deliveryNotes = [
                   </li>
                 ))}
               </ul>
+              </div>
             </div>
 
             <ServiceWorkflowPreview
@@ -74,7 +120,19 @@ const deliveryNotes = [
                 ERP OUTPUTS
               </div>
 
-              <div class="mt-4 space-y-3">
+              <div class="relative mt-4 h-40 overflow-hidden rounded-[var(--radius-lg)] mb-4">
+                <OptimizedImage
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=350&fit=crop"
+                  alt="ERP dashboard reporting"
+                  loading="eager"
+                  width={700}
+                  height={350}
+                  class="w-full h-full"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--canvas)] via-transparent to-transparent"></div>
+              </div>
+
+              <div class="space-y-3">
                 {[
                   { k: 'Batch status reports', v: 'Real-time production visibility (mock)' },
                   { k: 'Cutting & dispatch summary', v: 'Daily reporting for supervisors (mock)' },

@@ -253,6 +253,22 @@ body {
   transform: scale(1.05);
 }
 
+/* ── Image fallback when load fails ─────────────────────── */
+.image-fallback {
+  background: linear-gradient(135deg, var(--canvas-soft) 0%, var(--canvas-soft-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-fallback::after {
+  content: '';
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--hairline);
+  opacity: 0.5;
+}
+
 /* ── Card lift on hover ─────────────────────────────────── */
 .card-lift {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;

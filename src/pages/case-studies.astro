@@ -11,7 +11,7 @@ const caseStudies = [
     problem: 'Factories needed real-time stock + cutting/trading visibility across multiple stages.',
     solution: 'We built a weaving workflow ERP with role rights, parts management, and report-ready dashboards.',
     results: 'Faster planning, fewer mismatches, and daily reports that match production reality.',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop&auto=format',
+    img: 'https://plus.unsplash.com/premium_photo-1682148883506-c1ee71fd2809?q=80&w=800&h=360&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     gradient: 'from-purple-500/20 to-pink-500/20',
   },
   {
@@ -21,7 +21,7 @@ const caseStudies = [
     problem: 'Manual finance reconciliation created delays and inconsistent reporting formats.',
     solution: 'We delivered Oracle PL/SQL modules for accounts, statements, trail balance, and level-3 head reports.',
     results: 'Cleaner reconciliation cycles and consistent report outputs for management review.',
-    img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop&auto=format',
+    img: 'https://plus.unsplash.com/premium_photo-1661458017498-02c19c7eeac2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8',
     gradient: 'from-emerald-500/20 to-teal-500/20',
   },
   {
@@ -31,16 +31,16 @@ const caseStudies = [
     problem: 'Inbound/outbound notes needed strict workflow + authorization with audit-ready output.',
     solution: 'We implemented Kachi & Pakki parchi flows with user-based right control and ledger mapping.',
     results: 'Reduced errors, stronger controls, and faster audits with traceable data flows.',
-    img: 'https://images.unsplash.com/photo-1450101499163-c8848e66ad76?w=600&h=400&fit=crop&auto=format',
+    img: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&h=600&fit=crop',
     gradient: 'from-amber-500/20 to-orange-500/20',
   },
 ];
 
 const process = [
-  { step: '01', title: 'Discovery', desc: 'Understanding your workflows and requirements' },
-  { step: '02', title: 'Design', desc: 'UI layouts and data mapping' },
-  { step: '03', title: 'Development', desc: 'Building with production-quality code' },
-  { step: '04', title: 'UAT & Delivery', desc: 'Testing with real scenarios and handover' },
+  { step: '01', title: 'Discovery', desc: 'Understanding your workflows and requirements', img: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=400&h=200&fit=crop' },
+  { step: '02', title: 'Design', desc: 'UI layouts and data mapping', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop' },
+  { step: '03', title: 'Development', desc: 'Building with production-quality code', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop' },
+  { step: '04', title: 'UAT & Delivery', desc: 'Testing with real scenarios and handover', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=200&fit=crop' },
 ];
 ---
 
@@ -53,7 +53,7 @@ const process = [
           <!-- Image -->
           <div class="relative h-64 lg:h-auto overflow-hidden">
             <OptimizedImage
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format"
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop"
               alt="Case studies"
               loading="eager"
               width={800}
@@ -95,10 +95,25 @@ const process = [
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         {process.map((p, i) => (
           <ScrollReveal delay={i * 80}>
-            <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] p-5 text-center card-lift">
-              <div class="text-[28px] font-bold gradient-text">{p.step}</div>
-              <div class="mt-2 text-[14px] font-semibold text-[var(--ink)]">{p.title}</div>
-              <div class="mt-1 text-[12px] text-[var(--body)]">{p.desc}</div>
+            <div class="group rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] overflow-hidden card-lift">
+              <div class="relative h-24 overflow-hidden">
+                <OptimizedImage
+                  src={p.img}
+                  alt={p.title}
+                  loading="eager"
+                  width={400}
+                  height={200}
+                  class="w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)]/60 to-transparent"></div>
+                <div class="absolute top-3 left-3">
+                  <div class="text-[20px] font-bold gradient-text">{p.step}</div>
+                </div>
+              </div>
+              <div class="p-4 text-center">
+                <div class="text-[14px] font-semibold text-[var(--ink)]">{p.title}</div>
+                <div class="mt-1 text-[12px] text-[var(--body)]">{p.desc}</div>
+              </div>
             </div>
           </ScrollReveal>
         ))}

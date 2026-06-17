@@ -24,9 +24,8 @@ const directionStyles = {
   <slot />
 </div>
 
-<script is:inline>
-  if (!window.__scrollRevealInit) {
-    window.__scrollRevealInit = true;
+<script>
+  function initScrollReveal() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -42,6 +41,16 @@ const directionStyles = {
       },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
-    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+    document.querySelectorAll('.scroll-reveal').forEach((el) => {
+      if (el instanceof HTMLElement) {
+        if (el.dataset.observed === 'true') return;
+        el.dataset.observed = 'true';
+        observer.observe(el);
+      }
+    });
   }
+
+  initScrollReveal();
+  document.addEventListener('astro:after-swap', initScrollReveal);
 </script>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 
 const services = [
   { label: 'Web Development (MERN, MEAN, Next)', value: 'web-development' },
@@ -22,12 +23,31 @@ const faqs = [
   <!-- HERO -->
   <section class="py-14">
     <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <!-- Hero Image -->
+      <div class="rounded-[var(--radius-xl)] border border-[var(--hairline)] bg-[var(--canvas)] shadow-lvl4 overflow-hidden mb-8">
+        <div class="relative h-48 overflow-hidden">
+          <OptimizedImage
+            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1400&h=400&fit=crop"
+            alt="Contact O-Tech Solutions"
+            loading="eager"
+            width={1400}
+            height={400}
+            class="w-full h-full"
+          />
+          <div class="absolute inset-0 bg-gradient-to-r from-[var(--canvas)] via-transparent to-[var(--canvas)]"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">CONTACT</div>
+              <h1 class="display-xl mt-2 text-[var(--ink)]">Tell us your module. We'll hand-deliver a plan.</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div class="lg:col-span-5">
           <ScrollReveal>
-            <div class="text-[12px] text-[var(--mute)] uppercase tracking-wide" style="font-family: var(--font-mono);">CONTACT</div>
-            <h1 class="display-lg mt-2">Tell us your module. We'll hand-deliver a plan.</h1>
-            <p class="mt-4 text-[16px] leading-[24px] text-[var(--body)]">
+            <p class="text-[16px] leading-[24px] text-[var(--body)]">
               Choose the service and share your requirements. We typically respond within 24 hours with a scoped plan.
             </p>
           </ScrollReveal>

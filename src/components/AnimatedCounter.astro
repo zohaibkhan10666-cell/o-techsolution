@@ -25,8 +25,7 @@ const suffix = value.replace(/[0-9]/g, '');
 </div>
 
 <script is:inline>
-  if (!window.__counterInit) {
-    window.__counterInit = true;
+  function initCounters() {
     const counterObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -54,4 +53,7 @@ const suffix = value.replace(/[0-9]/g, '');
     );
     document.querySelectorAll('.counter-value').forEach((el) => counterObserver.observe(el));
   }
+
+  initCounters();
+  document.addEventListener('astro:after-swap', initCounters);
 </script>

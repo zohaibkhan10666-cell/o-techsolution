@@ -180,31 +180,34 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 </header>
 
 <script is:inline>
-  const btn = document.getElementById('mobile-menu-btn');
-  const backdrop = document.getElementById('mobile-backdrop');
-  const closeBg = document.getElementById('mobile-close-bg');
-  const closeBtn = document.getElementById('mobile-close-btn');
+  function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const backdrop = document.getElementById('mobile-backdrop');
+    const closeBg = document.getElementById('mobile-close-bg');
+    const closeBtn = document.getElementById('mobile-close-btn');
 
-  function openMenu() {
-    if (!backdrop || !btn) return;
-    backdrop.classList.remove('pointer-events-none', 'opacity-0');
-    backdrop.classList.add('pointer-events-auto', 'opacity-100');
-    btn.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+    function openMenu() {
+      if (!backdrop || !btn) return;
+      backdrop.classList.remove('pointer-events-none', 'opacity-0');
+      backdrop.classList.add('pointer-events-auto', 'opacity-100');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      if (!backdrop || !btn) return;
+      backdrop.classList.remove('pointer-events-auto', 'opacity-100');
+      backdrop.classList.add('pointer-events-none', 'opacity-0');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    btn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    closeBg?.addEventListener('click', closeMenu);
+    document.addEventListener('astro:before-swap', closeMenu);
   }
 
-  function closeMenu() {
-    if (!backdrop || !btn) return;
-    backdrop.classList.remove('pointer-events-auto', 'opacity-100');
-    backdrop.classList.add('pointer-events-none', 'opacity-0');
-    btn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  btn?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  closeBg?.addEventListener('click', closeMenu);
-
-  // Close on route change (View Transitions)
-  document.addEventListener('astro:before-swap', closeMenu);
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
 </script>
