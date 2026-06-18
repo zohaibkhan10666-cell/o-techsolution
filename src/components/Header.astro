@@ -215,16 +215,21 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     const setOpenState = (isOpen) => {
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 
-
       if (isOpen) {
         backdrop.setAttribute('aria-hidden', 'false');
         setInert(backdrop, false);
 
+        // IMPORTANT: backdrop is responsible for capturing taps outside the drawer.
+        // The drawer itself (panel) must be clickable as well.
         backdrop.classList.remove('pointer-events-none', 'opacity-0');
         backdrop.classList.add('pointer-events-auto', 'opacity-100');
+
+        // Ensure drawer is interactive when open.
         panel.style.pointerEvents = 'auto';
 
-        // Keep close button focusable while open.
+        // Also ensure the panel is focusable (some browsers can keep it non-interactive).
+        panel.classList.remove('pointer-events-none');
+
         closeBtn?.setAttribute('tabindex', '0');
         document.body.style.overflow = 'hidden';
       } else {
@@ -233,9 +238,11 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 
         backdrop.classList.remove('pointer-events-auto', 'opacity-100');
         backdrop.classList.add('pointer-events-none', 'opacity-0');
-        panel.style.pointerEvents = 'none';
 
-        // If something inside the drawer was focused, don't keep it focusable while closed.
+        // Disable drawer interactions while closed.
+        panel.style.pointerEvents = 'none';
+        panel.classList.add('pointer-events-none');
+
         closeBtn?.setAttribute('tabindex', '-1');
         document.body.style.overflow = '';
       }
