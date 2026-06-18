@@ -122,6 +122,8 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     class="md:hidden fixed inset-0 z-[60] pointer-events-none opacity-0 transition-opacity duration-200"
     aria-hidden="true"
   >
+
+
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="mobile-close-bg"></div>
 
     <!-- Drawer panel -->
@@ -185,29 +187,84 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     const backdrop = document.getElementById('mobile-backdrop');
     const closeBg = document.getElementById('mobile-close-bg');
     const closeBtn = document.getElementById('mobile-close-btn');
+    const panel = document.getElementById('mobile-panel');
 
-    function openMenu() {
-      if (!backdrop || !btn) return;
-      backdrop.classList.remove('pointer-events-none', 'opacity-0');
-      backdrop.classList.add('pointer-events-auto', 'opacity-100');
-      btn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
+    // Use inert to prevent focus getting trapped inside a hidden backdrop.
+    const setInert = (node, shouldInert) => {
+      if (!node) return;
+      try {
+        // inert is supported in modern browsers; fallback if not.
+        node.inert = shouldInert;
+      } catch {
+        // no-op
+      }
+    };
 
-    function closeMenu() {
-      if (!backdrop || !btn) return;
-      backdrop.classList.remove('pointer-events-auto', 'opacity-100');
-      backdrop.classList.add('pointer-events-none', 'opacity-0');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
+    if (!btn || !backdrop || !panel) return;
 
-    btn?.addEventListener('click', openMenu);
+
+    // Prevent double-binding on Astro transitions.
+    // (Use plain JS typing to avoid TS/templating issues in inline scripts.)
+    const boundKey = '__mobileMenuBound';
+    const btnAny = btn;
+    if (btnAny[boundKey]) return;
+    btnAny[boundKey] = true;
+
+
+
+    const setOpenState = (isOpen) => {
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+
+      if (isOpen) {
+        backdrop.setAttribute('aria-hidden', 'false');
+        setInert(backdrop, false);
+
+        backdrop.classList.remove('pointer-events-none', 'opacity-0');
+        backdrop.classList.add('pointer-events-auto', 'opacity-100');
+        panel.style.pointerEvents = 'auto';
+
+        // Keep close button focusable while open.
+        closeBtn?.setAttribute('tabindex', '0');
+        document.body.style.overflow = 'hidden';
+      } else {
+        backdrop.setAttribute('aria-hidden', 'true');
+        setInert(backdrop, true);
+
+        backdrop.classList.remove('pointer-events-auto', 'opacity-100');
+        backdrop.classList.add('pointer-events-none', 'opacity-0');
+        panel.style.pointerEvents = 'none';
+
+        // If something inside the drawer was focused, don't keep it focusable while closed.
+        closeBtn?.setAttribute('tabindex', '-1');
+        document.body.style.overflow = '';
+      }
+    };
+
+    // Ensure starting state is consistent.
+    setOpenState(false);
+
+    const openMenu = () => setOpenState(true);
+    const closeMenu = () => setOpenState(false);
+
+    btn.addEventListener('click', () => {
+      openMenu();
+    });
+
     closeBtn?.addEventListener('click', closeMenu);
     closeBg?.addEventListener('click', closeMenu);
+
+    // Close before Astro view transitions
     document.addEventListener('astro:before-swap', closeMenu);
+
+    // Close if user navigates by tapping a link inside drawer
+    const drawerLinks = panel.querySelectorAll('a');
+    drawerLinks.forEach((a) => {
+      a.addEventListener('click', () => closeMenu());
+    });
   }
 
   initMobileMenu();
   document.addEventListener('astro:after-swap', initMobileMenu);
 </script>
+
