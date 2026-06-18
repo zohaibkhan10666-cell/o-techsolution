@@ -230,11 +230,10 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
         // Also ensure the panel is focusable (some browsers can keep it non-interactive).
         panel.classList.remove('pointer-events-none');
 
-        // Prevent background scroll, but don't hide content unexpectedly.
-        // Using overflow hidden on body can cause layout/viewport jump on some mobile browsers.
-        // Prevent scroll via touch-action instead.
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
+        // Prevent background scroll without using overflow:hidden.
+        // overflow:hidden can cause the page to visually "jump" and some browsers
+        // will hide/clip the main content unexpectedly.
+        document.body.style.touchAction = 'none';
 
         closeBtn?.setAttribute('tabindex', '0');
       } else {
@@ -249,8 +248,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
         panel.classList.add('pointer-events-none');
 
         // Restore scrolling.
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
 
         closeBtn?.setAttribute('tabindex', '-1');
       }
