@@ -119,17 +119,16 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
   <!-- Mobile drawer backdrop -->
   <div
     id="mobile-backdrop"
-    class="md:hidden fixed inset-0 z-[60] pointer-events-none opacity-0 transition-opacity duration-200"
+    class="md:hidden fixed inset-0 z-[60] pointer-events-none opacity-0 transition-opacity duration-200 bg-black/0"
     aria-hidden="true"
   >
-
 
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="mobile-close-bg"></div>
 
     <!-- Drawer panel -->
     <div
       id="mobile-panel"
-      class="absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-[var(--canvas)] border-l border-[var(--hairline)] shadow-lvl4 flex flex-col overflow-y-auto"
+      class="absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-[var(--canvas)]/70 backdrop-blur-md border-l border-[var(--hairline)] shadow-lvl4 flex flex-col overflow-y-auto"
     >
       <!-- Header -->
       <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--hairline)]">
